@@ -8,6 +8,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+::placeholder {
+  margin-right: 10px;
+  color: #344955;
+  font-size: 30px;
+}
+
+input.search{
+
+font-size:30px;
+
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
