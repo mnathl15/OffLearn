@@ -7,8 +7,10 @@ import axios from 'axios';
 
 
 export class FileExplorer extends Component {
+
     constructor(props) {
       super(props);
+<<<<<<< HEAD
       this.state = { 
         fadeIn: true,
         topics: []
@@ -16,6 +18,25 @@ export class FileExplorer extends Component {
       this.toggle = this.toggle.bind(this);
       this.getHistory = this.getHistory.bind(this);
       setInterval(this.getHistory, 5000)
+=======
+      this.state = {
+        fadeIn: true,
+        topicList: [],
+       };
+      this.toggle = this.toggle.bind(this);
+      this.getTopics();
+    }
+
+    getTopics(){
+        var json_string = Utils.getRequest(Constants.fileListUrl);
+        console.log("JSON_STRING");
+        console.log(json_string);
+        console.log("Entering parse");
+      //  var data = JSON.parse(json_string);
+        console.log("Ended parse");
+        console.log("DATA");
+      //  console.log(data);
+>>>>>>> 13c8fa2cd78d8761afc842fe776bee4852c324f8
     }
 
     toggle() {
@@ -34,13 +55,37 @@ export class FileExplorer extends Component {
     }
 
     render() {
-        return (
-          <div>
-            <Button color="primary" onClick={this.toggle}>Toggle Fade</Button>
-                <Fade in={this.state.fadeIn} tag="h5" className="mt-3">
-                  Peek a Boo
-                </Fade>
-          </div>
-        );
+      const topic_group_style={
+       position:'absolute',
+       top:window.innerHeight/2 + 100,
+       right:window.innerWidth/2 -320,
+       height:100,
+       width:800,
+       borderRadius:10,
+       fontSize:'30px',
+       textAlign:'center',
+     };
+
+     const topic_button={
+       backgroundColor:'white',
+       height:50,
+       width:50,
+       fontSize:'20px',
+       color:'black',
+       textAlign:'center',
+     };
+
+     const fade={
+       color:'white'
+     }
+
+      return (
+        <div style={topic_group_style}>
+          <Button style={topic_button} color="primary" onClick={this.toggle}>f </Button>
+              <Fade in={this.state.fadeIn} tag="h5" style={fade}>
+                  Peek-a-Boo!
+              </Fade>
+        </div>
+      );
     }
 }
