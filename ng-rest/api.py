@@ -5,7 +5,7 @@ import os, pdfkit
  
 @app.route("/search=<query>")
 def search(query):
-    print(query)
+    #print(query)
     searchInternet(query)
     resp = jsonify({"data": "Success"})
     resp.headers['Access-Control-Allow-Origin'] = '*'
