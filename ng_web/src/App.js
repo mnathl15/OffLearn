@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+
 import { Button, Input, Row, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
+import {SearchBar} from "./components/searchBar"
+import { FileExplorer } from "./components/fileExplorer"
+import { Label } from 'reactstrap';
+import { Constants } from './utils/constants';
 
 class App extends Component {
 
@@ -24,6 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+<<<<<<< HEAD
         <header className="App-header">
           Offline Sites
         </header>
@@ -42,6 +48,11 @@ class App extends Component {
             </DropdownMenu>
           </ButtonDropdown>
         </footer>
+=======
+        <Label>{Constants.APP_NAME}</Label>
+        <SearchBar/>
+        <FileExplorer/>
+>>>>>>> 78de365361ecb52cf9c85ace2629a0a2b5718cb8
       </div>
     );
   }
