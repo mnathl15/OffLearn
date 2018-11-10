@@ -31,8 +31,8 @@ export class SearchBar extends Component {
 
       const search_styles={
         position:'absolute',
-        top:window.innerHeight/2-100,
-        right:window.innerWidth/2 -350,
+        top:window.innerHeight/2-50,
+        right:window.innerWidth/2 -320,
         height:50,
         width:700,
         borderRadius:10,
@@ -44,8 +44,8 @@ export class SearchBar extends Component {
 
       const button_styles={
         position:'absolute',
-        top:window.innerHeight/2-100,
-        right:window.innerWidth/2 -480,
+        top:window.innerHeight/2-50,
+        right:window.innerWidth/2 -430,
         width:100,
         height:50,
         borderRadius:10,

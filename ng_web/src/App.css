@@ -14,18 +14,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(40px + 3vmin);
   color: white;
 }
 
-.App-body {
-  background-color: #282c34;
-  min-height: 33vh;
+.heading {
+  font-size: 100px;
+  color: white;
+  font-family: times new roman;
 }
 
-.App-footer {
-  background-color: #315691;
-  min-height: 33vh;
+
+body {
+    background-image: url("https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?cs=srgb&dl=cold-snow-landscape-933054.jpg&fm=jpg");
+    background-size: 1600px 900px;
 }
 
 .App-link {
