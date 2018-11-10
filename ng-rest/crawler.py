@@ -1,29 +1,26 @@
 from bs4 import BeautifulSoup as bs
-import requests, os, imp, requests
+import requests, os, imp, pdfkit
 from googlesearch import search
 topic = imp.load_source("topic", "./models/topic.py")
+from flask import send_file
 
 #acts as a search engine, returns status code
 def searchInternet(query):
     querySize = 3
-    rootDir = "templates"
+    rootDir = "data"
     urlList = list(next(search(query, stop=5)) for _ in range(querySize))
     
     folderPath = "/".join([rootDir, query])
     if not os.path.exists(folderPath):
         os.mkdir(folderPath)
 
-    # print(urlList)
 
     for url in urlList:
 
-        if "youtube" not in url:
-            
-            rawHtml = str(requests.get(url).text.encode("utf-8"))
-            filePath = "/".join([rootDir, query, getWebsite(url)]) + ".html" 
-            file = open(filePath, "w")
-            file.write(rawHtml)
-            file.close()
+        filePath = "/".join([rootDir, query, getWebsite(url)]) + ".pdf" 
+        path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+        config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+        pdfkit.from_url(url, filePath, configuration=config)
 
 def getWebsite(url):
     preIndex = url.index(".")+1
@@ -31,25 +28,21 @@ def getWebsite(url):
     postIndex = url.index(".")
     return url[:postIndex].capitalize()
 
-# searchInternet("Halloween")
-
-def getFile(filename):
-    return "<p> Horray!! </p>"
-
 def getFileNames():
     topicList = []
-    folderList = os.listdir("templates")
+    folderList = os.listdir("data")
     for folder in folderList:
         newTopic = topic.Topic()
-        pageList = os.listdir("templates/" + folder)
+        pageList = os.listdir("data/" + folder)
         newTopic.setName(folder)
         for page in pageList:
-            newTopic.addPage(page)
+            page = os.path.abspath(page)
+            newTopic.addPage(os.path.abspath(page))
         topicList.append(newTopic)
         print(newTopic)
     return topicList 
 
-
+getFileNames()
 
 # html = requests.get("https://www.bing.com/search?q= " + text)
 # page = bs(html.content,'html.parser')
