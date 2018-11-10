@@ -10,7 +10,6 @@ export class FileExplorer extends Component {
 
     constructor(props) {
       super(props);
-<<<<<<< HEAD
       this.state = { 
         fadeIn: true,
         topics: []
@@ -18,25 +17,7 @@ export class FileExplorer extends Component {
       this.toggle = this.toggle.bind(this);
       this.getHistory = this.getHistory.bind(this);
       setInterval(this.getHistory, 5000)
-=======
-      this.state = {
-        fadeIn: true,
-        topicList: [],
-       };
-      this.toggle = this.toggle.bind(this);
-      this.getTopics();
-    }
 
-    getTopics(){
-        var json_string = Utils.getRequest(Constants.fileListUrl);
-        console.log("JSON_STRING");
-        console.log(json_string);
-        console.log("Entering parse");
-      //  var data = JSON.parse(json_string);
-        console.log("Ended parse");
-        console.log("DATA");
-      //  console.log(data);
->>>>>>> 13c8fa2cd78d8761afc842fe776bee4852c324f8
     }
 
     toggle() {
