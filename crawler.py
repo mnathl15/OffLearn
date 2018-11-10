@@ -50,9 +50,11 @@ def search(text):
 search("einstein")
 
 
+def getFileNames():
+    return "None"
 
-
-
+def getFile(filename):
+    return "<p> Horray!! </p>"
 
 # from googlesearch import search 
 
