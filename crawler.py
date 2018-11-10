@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup as bs
 import requests, os, imp
+topic = imp.load_source("topic", "./models/topic.py")
+
 #acts as a search engine, returns status code
 def search(text):
     html = requests.get("https://www.bing.com/search?q= " + text)
@@ -14,7 +16,10 @@ def search(text):
         except:
             pass
     print(links)
-topic = imp.load_source("topic", "./models/topic.py")
+
+def getFile(filename):
+    return "<p> Horray!! </p>"
+
 def getFileNames():
     topicList = []
     folderList = os.listdir("data")
