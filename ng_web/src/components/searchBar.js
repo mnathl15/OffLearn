@@ -18,14 +18,6 @@ export class SearchBar extends Component {
     }
     render() {
 
-
-
-      function changeButtonColor(){
-
-        var button = document.getElementById('submit_button');
-
-      }
-
       function onHover(){
         var button = document.getElementById('submit_button');
         button.style.backgroundColor = '#4A6572'
@@ -64,11 +56,6 @@ export class SearchBar extends Component {
         fontSize: '20px',
 
 
-
-
-
-
-
       }
 
 
@@ -79,8 +66,8 @@ export class SearchBar extends Component {
             <label>
             <input value={this.state.inputValue}  onChange={evt => this.updateInputValue(evt)} style={search_styles} id = 'search' 
               placeholder="What are you looking for?" type="text" name= "name"/>
-            <input style={button_styles} id = 'submit_button' type="button" value="Search"  onClick={() =>{Utils.searchQuery(this.state.inputValue)}},
-                ()=>changeButtonColor() onMouseOver={()=>onHover()} onMouseLeave = {()=>onLeaveHover()}/>
+            <input style={button_styles} id = 'submit_button' type="button" value="Search"  onClick={() =>{Utils.searchQuery(this.state.inputValue)}}
+              onMouseOver={()=>onHover()} onMouseLeave = {()=>onLeaveHover()}/>
             </label>
 
           </form>
