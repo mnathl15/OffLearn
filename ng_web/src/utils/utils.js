@@ -11,8 +11,8 @@ export class Utils{
         
         fetch(url)
             .then(response => response.json())
-            .then(function(data) {
-                return data;
+            .then(function(data){
+                return data
             })
     }
 }
