@@ -5,7 +5,17 @@ import {Utils} from "../utils/utils"
 import {Constants} from "../utils/constants"
 
 export class SearchBar extends Component {
-
+    constructor(props){
+        super(props);
+        this.state = {
+            inputValue: ''
+        }; this.updateInputValue = this.updateInputValue.bind(this)
+    }
+    updateInputValue(evt){
+        this.setState({
+            inputValue: evt.target.value
+        });
+    }
     render() {
 
 
@@ -67,18 +77,13 @@ export class SearchBar extends Component {
 
           <form>
             <label>
-            <input style={search_styles} id = 'search' placeholder="What are you looking for?" type="text" name= "name"/>
-            <input style={button_styles} id = 'submit_button' type="button" value="Search"  onClick={() => Utils.searchQuery("test"),
-                                                                                            ()=>changeButtonColor()}
-                                                                                             onMouseOver={()=>onHover()}
-                                                                                             onMouseLeave = {()=>onLeaveHover()}/>
+            <input value={this.state.inputValue}  onChange={evt => this.updateInputValue(evt)} style={search_styles} id = 'search' 
+              placeholder="What are you looking for?" type="text" name= "name"/>
+            <input style={button_styles} id = 'submit_button' type="button" value="Search"  onClick={() =>{Utils.searchQuery(this.state.inputValue)}},
+                ()=>changeButtonColor() onMouseOver={()=>onHover()} onMouseLeave = {()=>onLeaveHover()}/>
             </label>
 
           </form>
-
-
-
-
 
         );
     }
