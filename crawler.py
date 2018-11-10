@@ -1,9 +1,8 @@
 
 
+
 from bs4 import BeautifulSoup as bs
 import requests
-
-
 
 
 
@@ -38,29 +37,7 @@ def search(text):
 
 
 
-
-
-
-
-
-
-
-
-
     print(links)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -77,9 +54,8 @@ search("einstein")
 
 
 
+# from googlesearch import search 
 
-
-
-
-
+# for url in search('Civil War', stop=5):
+#     print(url)
 
