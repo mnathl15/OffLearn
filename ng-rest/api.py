@@ -1,11 +1,12 @@
-from flask import Flask, jsonify
-app = Flask(__name__)
-from crawler import getFileNames
+from flask import Flask, jsonify, render_template
+app = Flask(__name__, template_folder='templates')
+from crawler import getFileNames, searchInternet, getFileObject
+import os, pdfkit
  
 @app.route("/search=<query>")
 def search(query):
-    print(query)
-    resp = jsonify({"data": "Hello World"})
+    searchInternet(query)
+    resp = jsonify({"data": "Success"})
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
@@ -16,12 +17,6 @@ def getFileList():
     resp = jsonify({"data": dataJson})
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
-
-@app.route("/filename=<filename>")
-def getFile(filename):
-    resp = jsonify({"data": "Hello World"})
-    resp.headers['Access-Control-Allow-Origin'] = '*'
-    return app.send_static_file("data/" + filename)
  
 if __name__ == "__main__":
     app.run()
