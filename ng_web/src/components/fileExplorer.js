@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Input, Row, Col, Fade } from 'reactstrap';
 import {Utils} from "../utils/utils"
 import {Constants} from "../utils/constants"
 import axios from 'axios';
-import {BubbleIcon} from './bubleIcon'
+import {BubbleIcon} from './bubbleIcon'
 
 
 export class FileExplorer extends Component {
@@ -15,21 +15,14 @@ export class FileExplorer extends Component {
         fadeIn: true,
         topics: []
        };
-      this.toggle = this.toggle.bind(this);
       this.getHistory = this.getHistory.bind(this);
       setInterval(this.getHistory, 5000)
 
     }
 
-    toggle() {
-      this.setState({
-        fadeIn: !this.state.fadeIn
-      });
-    }
 
-    getHistory(){
-      console.log(this.state.topics);
-      
+
+    getHistory(){      
       axios.get(Constants.fileListUrl)
         .then(res => {
           this.setState({topics: res.data.data});
@@ -40,30 +33,16 @@ export class FileExplorer extends Component {
       const topic_group_style={
        position:'absolute',
        top:window.innerHeight/2 + 100,
-       right:window.innerWidth/2 -320,
        height:100,
-       width:800,
+       width:"100%",
        borderRadius:10,
        fontSize:'30px',
        textAlign:'center',
      };
 
-     const topic_button={
-       backgroundColor:'white',
-       height:50,
-       width:50,
-       fontSize:'20px',
-       color:'black',
-       textAlign:'center',
-     };
-
-     const fade={
-       color:'white'
-     }
-
       return (
         <div style={topic_group_style}>
-          <BubbleIcon name={"Poop"} pages={null}/>
+          <BubbleIcon name={"Poop"} pages={["uno", "dos", "tres"]}/>
         </div>
       );
     }
