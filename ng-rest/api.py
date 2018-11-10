@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template
 app = Flask(__name__, template_folder='templates')
-from crawler import getFileNames, searchInternet, getFileObject
+from crawler import getFileNames, searchInternet
 import os, pdfkit
  
 @app.route("/search=<query>")
