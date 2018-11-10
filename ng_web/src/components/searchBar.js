@@ -17,19 +17,74 @@ export class SearchBar extends Component {
         });
     }
     render() {
+
+
+
+      function changeButtonColor(){
+
+        var button = document.getElementById('submit_button');
+
+      }
+
+      function onHover(){
+        var button = document.getElementById('submit_button');
+        button.style.backgroundColor = '#4A6572'
+
+      }
+
+      function onLeaveHover(){
+        var button = document.getElementById('submit_button');
+        button.style.backgroundColor = '#344955'
+
+      }
+
+
+      const search_styles={
+        position:'absolute',
+        top:window.innerHeight/2-50,
+        right:window.innerWidth/2 -320,
+        height:50,
+        width:700,
+        borderRadius:10,
+        fontSize:'30px',
+        textAlign:'center'
+
+
+      };
+
+      const button_styles={
+        position:'absolute',
+        top:window.innerHeight/2-50,
+        right:window.innerWidth/2 -430,
+        width:100,
+        height:50,
+        borderRadius:10,
+        backgroundColor:'#344955',
+        color:'white',
+        fontSize: '20px',
+
+
+
+
+
+
+
+      }
+
+
+
         return (
-          <Row>
-            <Col md={{ size: 6, offset: 3 }}>
-                <Row>
-                    <Col xs="9">
-                        <Input value={this.state.inputValue} onChange={evt => this.updateInputValue(evt)} placeholder="Search" />
-                    </Col>
-                    <Col xs="3">
-                           <Button onClick={() =>{Utils.searchQuery(this.state.inputValue)}}>Search</Button>
-                    </Col>
-                </Row>
-            </Col>
-        </Row>
+
+          <form>
+            <label>
+            <input value={this.state.inputValue}  onChange={evt => this.updateInputValue(evt)} style={search_styles} id = 'search' 
+              placeholder="What are you looking for?" type="text" name= "name"/>
+            <input style={button_styles} id = 'submit_button' type="button" value="Search"  onClick={() =>{Utils.searchQuery(this.state.inputValue)}},
+                ()=>changeButtonColor() onMouseOver={()=>onHover()} onMouseLeave = {()=>onLeaveHover()}/>
+            </label>
+
+          </form>
+
         );
     }
 }
