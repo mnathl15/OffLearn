@@ -37,7 +37,7 @@ def searchInternet(query):
 
 #gets website name
 def getWebsite(url):
-  
+
 
 
     url = re.findall('(?<=\.)([^.]+)(?:\.(?:co\.uk|ac\.us|[^.]+(?:$|\n)))',url)

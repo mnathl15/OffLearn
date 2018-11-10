@@ -27,19 +27,13 @@ class App extends Component {
    });
  }
 
-
   render() {
     return (
-
       <div className="App">
-    
-
         <img height="92px" src=""/>
-
         <h1 className = "heading">{Constants.APP_NAME}</h1>
         <SearchBar/>
         <FileExplorer/>
-
       </div>
     );
   }
