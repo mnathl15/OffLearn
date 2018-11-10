@@ -4,6 +4,7 @@ import { Button, Form, FormGroup, Input, Row, Col, Fade } from 'reactstrap';
 import {Utils} from "../utils/utils"
 import {Constants} from "../utils/constants"
 import axios from 'axios';
+import {BubbleIcon} from './bubleIcon'
 
 
 export class FileExplorer extends Component {
@@ -62,10 +63,7 @@ export class FileExplorer extends Component {
 
       return (
         <div style={topic_group_style}>
-          <Button style={topic_button} color="primary" onClick={this.toggle}>f </Button>
-              <Fade in={this.state.fadeIn} tag="h5" style={fade}>
-                  Peek-a-Boo!
-              </Fade>
+          <BubbleIcon name={"Poop"} pages={null}/>
         </div>
       );
     }
