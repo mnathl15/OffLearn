@@ -14,8 +14,25 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(40px + 3vmin);
   color: white;
+}
+
+.heading {
+  font-size: 100px;
+  color: white;
+  font-family: times new roman;
+}
+.p {
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 150px;
+    margin-left: 80px;
+}
+
+body {
+    background-image: url("https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?cs=srgb&dl=cold-snow-landscape-933054.jpg&fm=jpg");
+    background-size: 1600px 900px;
 }
 
 .App-link {
