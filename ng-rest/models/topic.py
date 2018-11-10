@@ -1,3 +1,6 @@
+
+from json import dumps
+
 class Topic:
 
     def __init__(self):
@@ -10,4 +13,10 @@ class Topic:
 
     def addPage(self, page):
         self.pages.append(page)
+
+    def __str__(self):
+        return self.name
+
+    def serialize(self):
+        return {'name': self.name, 'pages': self.pages}
         

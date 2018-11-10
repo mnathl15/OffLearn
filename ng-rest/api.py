@@ -4,14 +4,16 @@ from crawler import getFileNames
  
 @app.route("/search=<query>")
 def search(query):
+    print(query)
     resp = jsonify({"data": "Hello World"})
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
 @app.route("/fileList")
-def getFileList(query):
+def getFileList():
     data = getFileNames()
-    resp = jsonify({"data": data})
+    dataJson=[topic.serialize() for topic in data]
+    resp = jsonify({"data": dataJson})
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 
@@ -19,7 +21,7 @@ def getFileList(query):
 def getFile(filename):
     resp = jsonify({"data": "Hello World"})
     resp.headers['Access-Control-Allow-Origin'] = '*'
-    return resp
+    return app.send_static_file("data/" + filename)
  
 if __name__ == "__main__":
     app.run()

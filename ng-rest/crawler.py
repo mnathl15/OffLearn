@@ -24,12 +24,13 @@ def getFileNames():
     topicList = []
     folderList = os.listdir("data")
     for folder in folderList:
-        newTopic = Topic()
+        newTopic = topic.Topic()
         pageList = os.listdir("data/" + folder)
         newTopic.setName(folder)
         for page in pageList:
             newTopic.addPage(page)
         topicList.append(newTopic)
+        print(newTopic)
     return topicList
 
 # from googlesearch import search 
