@@ -4,5 +4,4 @@ export class Constants{
     static ROOT_URL = "http://localhost:5000"
     static searchUrl = Constants.ROOT_URL + "/search"
     static fileListUrl = Constants.ROOT_URL + "/fileList"
-    static fileRetrieveUrl = Constants.ROOT_URL + "/fileRetrieve"
 }
