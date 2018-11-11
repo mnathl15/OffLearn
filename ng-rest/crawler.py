@@ -81,7 +81,10 @@ def getFileNames():
 
         for page in pageList:
             newTopic.addPage(os.path.abspath(os.path.join(direc,page)))
-            topicList.append(newTopic)
+
+        topicList.append(newTopic)
+
+    
 
     return topicList 
 
