@@ -9,31 +9,29 @@ import regex as re
 def searchInternet(query):
 
 
-    querySize = 10
+    querySize = 4
     rootDir = "data"
 
-
-
     searches = list(search(query,stop=querySize))
-
-
-
-    filterURLS(searches)
+    urllist = filterURLS(searches)
 
 
     folderPath = "/".join([rootDir, query])
-
-
     if not os.path.exists(folderPath):
         os.mkdir(folderPath)
 
     #converts url to pdf
-    for url in searches:
+    for url in urllist:
 
-        filePath = "/".join([rootDir, query, getWebsite(url)]) + ".pdf" 
-        path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
-        config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-        pdfkit.from_url(url, filePath, configuration=config)
+        filePath = "/".join([rootDir, query, getWebsite(url)]) + ".pdf"
+        print(filePath)
+        try:
+            path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+            config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+            pdfkit.from_url(url, filePath, configuration=config)
+        except:
+            pass
+
 
 #gets website name
 def getWebsite(url):
@@ -43,15 +41,14 @@ def getWebsite(url):
     url = re.findall('(?<=\.)([^.]+)(?:\.(?:co\.uk|ac\.us|[^.]+(?:$|\n)))',url)
 
 
-
-    return url
+    return ''.join(url)
 
 #makes sure there are no repeat websites
 def filterURLS(urllist):
     occur_url={}
     for url in urllist:
-        webDomain = ''.join(getWebsite(url))
-        print(webDomain)
+        webDomain = getWebsite(url)
+
         try:
             occur_url[webDomain]  = occur_url[webDomain] + 1
         except:
@@ -62,8 +59,7 @@ def filterURLS(urllist):
         if(occur_url[webDomain] > 1):
             urllist.remove(url)
 
-
-    print(urllist)
+    return urllist
 
 
 
