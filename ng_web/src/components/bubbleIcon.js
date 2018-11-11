@@ -13,13 +13,20 @@ export class BubbleIcon extends Component {
         
     }
 
+    getSource(fileDir){
+        var start = fileDir.lastIndexOf("\\")+1
+        var end = fileDir.lastIndexOf(".")
+        return fileDir.substring(start,end)
+    }
+
     renderPageList(){
         var pageList = []
         this.props.pages.forEach(page => {
             pageList.push(
                 <Row>
                     <div className="col-md-12">
-                        <Label><a style={{"color": "inherit"}} href={page}>{page}</a></Label>
+                        <Label><a target="_blank" rel="noopener noreferrer" 
+                            style={{"color": "inherit"}} href={page}>{this.getSource(page)}</a></Label>
                     </div>
                 </Row>)
         });
@@ -45,8 +52,9 @@ export class BubbleIcon extends Component {
         };
         return(
             <Col>
-                <Button style={topic_button} onClick={this.toggle}/>
+                <Button style={topic_button} onClick={this.toggle}>{this.props.name.substring(0,1)}</Button>
                 <Fade in={this.state.fadeIn} tag="h5" className="mt-3" style={{textAlign:'center',}}>
+                    {this.props.name}
                     {this.renderPageList()}
                 </Fade>
             </Col>
