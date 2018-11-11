@@ -10,6 +10,7 @@ export class BubbleIcon extends Component {
             fadeIn: false
         }
         this.toggle = this.toggle.bind(this);
+        
     }
 
     renderPageList(){
