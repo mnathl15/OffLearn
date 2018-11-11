@@ -5,14 +5,15 @@ topic = imp.load_source("topic", "./models/topic.py")
 from flask import send_file
 import regex as re
 
+rootDir = "../data"
+
 #acts as a search engine, returns status code
 def searchInternet(query):
 
 
     querySize = 4
-    rootDir = "data"
 
-    searches = list(search(query,stop=querySize))
+    searches = list(search(query,stop=querySize))[:querySize]
     urllist = filterURLS(searches)
 
 
@@ -35,13 +36,8 @@ def searchInternet(query):
 
 #gets website name
 def getWebsite(url):
-
-
-
     url = re.findall('(?<=\.)([^.]+)(?:\.(?:co\.uk|ac\.us|[^.]+(?:$|\n)))',url)
-
-
-    return ''.join(url)
+    return ''.join(url).capitalize()
 
 #makes sure there are no repeat websites
 def filterURLS(urllist):
@@ -66,12 +62,12 @@ def filterURLS(urllist):
 
 def getFileNames():
     topicList = []
-    folderList = os.listdir("data")
+    folderList = os.listdir(rootDir)
 
     for folder in folderList:
         newTopic = topic.Topic()
-        pageList = os.listdir("data/" + folder)
-        direc = os.path.join("data/",folder)
+        pageList = os.listdir(rootDir + "/" + folder)
+        direc = os.path.join(rootDir + "/",folder)
 
 
 
@@ -80,7 +76,7 @@ def getFileNames():
 
 
         for page in pageList:
-            newTopic.addPage(os.path.abspath(os.path.join(direc,page)))
+            newTopic.addPage(folder + "/" + page)
 
         topicList.append(newTopic)
 

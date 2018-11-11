@@ -23,9 +23,10 @@ export class BubbleIcon extends Component {
         var pageList = []
         this.props.pages.forEach(page => {
             pageList.push(
-                <div> 
-                    {/* onClick={window.open(page)}> */}
-                    {this.getSource(page)}
+                <div>
+                    <a target="_blank" href={"http://localhost:5000/file/" + page}>
+                        {this.getSource(page)}
+                    </a>
                     <br/>
                 </div>
             );
@@ -50,6 +51,7 @@ export class BubbleIcon extends Component {
             textAlign:'center',
             borderRadius: '30px'
         };
+
         return(
             <Col>
                 <Button style={topic_button} onClick={this.toggle}>{this.props.name.substring(0,1)}</Button>
@@ -60,7 +62,6 @@ export class BubbleIcon extends Component {
                             <CardText>{this.renderPageList()}</CardText>
                         </CardBody>
                     </Card>
-
                 </Fade>
             </Col>
         );
