@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Button, Label, Fade, Col, Row } from 'reactstrap';
+import { Button, Label, Fade, Col, Row, Card, CardHeader, CardBody, CardText } from 'reactstrap';
 
 export class BubbleIcon extends Component {
 
@@ -23,12 +23,12 @@ export class BubbleIcon extends Component {
         var pageList = []
         this.props.pages.forEach(page => {
             pageList.push(
-                <Row>
-                    <div className="col-md-12">
-                        <Label><a target="_blank" rel="noopener noreferrer" 
-                            style={{"color": "inherit"}} href={page}>{this.getSource(page)}</a></Label>
-                    </div>
-                </Row>)
+                <div> 
+                    {/* onClick={window.open(page)}> */}
+                    {this.getSource(page)}
+                    <br/>
+                </div>
+            );
         });
         return pageList;
     }
@@ -54,8 +54,13 @@ export class BubbleIcon extends Component {
             <Col>
                 <Button style={topic_button} onClick={this.toggle}>{this.props.name.substring(0,1)}</Button>
                 <Fade in={this.state.fadeIn} tag="h5" className="mt-3" style={{textAlign:'center',}}>
-                    {this.props.name}
-                    {this.renderPageList()}
+                    <Card>
+                        <CardHeader>{this.props.name}</CardHeader>
+                        <CardBody>
+                            <CardText>{this.renderPageList()}</CardText>
+                        </CardBody>
+                    </Card>
+
                 </Fade>
             </Col>
         );

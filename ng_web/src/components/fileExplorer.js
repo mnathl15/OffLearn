@@ -17,6 +17,7 @@ export class FileExplorer extends Component {
        };
       this.toggle = this.toggle.bind(this);
       this.getHistory = this.getHistory.bind(this);
+      this.getHistory()
       setInterval(this.getHistory, 5000)
 
     }
@@ -55,26 +56,12 @@ export class FileExplorer extends Component {
       const topic_group_style={
        position:'absolute',
        top:window.innerHeight/2 + 100,
-       right:window.innerWidth/2 -320,
        height:100,
-       width:800,
+       width:"100%",
        borderRadius:10,
        fontSize:'30px',
        textAlign:'center',
      };
-
-     const topic_button={
-       backgroundColor:'white',
-       height:50,
-       width:50,
-       fontSize:'20px',
-       color:'black',
-       textAlign:'center',
-     };
-
-     const fade={
-       color:'white'
-     }
 
       return (
 
