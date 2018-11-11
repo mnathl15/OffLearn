@@ -71,16 +71,24 @@ def filterURLS(urllist):
 def getFileNames():
     topicList = []
     folderList = os.listdir("data")
+
     for folder in folderList:
 
         newTopic = topic.Topic()
         pageList = os.listdir("data/" + folder)
+
         newTopic.setName(folder)
+
+
+
         for page in pageList:
-            page = os.path.abspath(page)
-            newTopic.addPage(os.path.abspath(page))
+
+            newTopic.addPage(os.path.abspath(os.path.join("data/",page)))
+
+
+
         topicList.append(newTopic)
-        print(newTopic)
+
     return topicList 
 
 getFileNames()
