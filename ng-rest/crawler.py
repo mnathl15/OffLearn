@@ -7,38 +7,6 @@ import regex as re
 
 rootDir = "../data"
 
-#acts as a search engine, returns status code
-def searchInternet(query):
-
-
-    querySize = 4
-
-    searches = list(search(query,stop=querySize))[:querySize]
-    urllist = filterURLS(searches)
-
-
-    folderPath = "/".join([rootDir, query])
-    if not os.path.exists(folderPath):
-        os.mkdir(folderPath)
-
-    #converts url to pdf
-    for url in urllist:
-
-        filePath = "/".join([rootDir, query, getWebsite(url)]) + ".pdf"
-        print(filePath)
-        try:
-            path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
-            config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
-            pdfkit.from_url(url, filePath, configuration=config)
-        except:
-            pass
-
-
-#gets website name
-def getWebsite(url):
-    url = re.findall('(?<=\.)([^.]+)(?:\.(?:co\.uk|ac\.us|[^.]+(?:$|\n)))',url)
-    return ''.join(url).capitalize()
-
 #makes sure there are no repeat websites
 def filterURLS(urllist):
     occur_url={}
@@ -55,9 +23,37 @@ def filterURLS(urllist):
         if(occur_url[webDomain] > 1):
             urllist.remove(url)
 
+        if webDomain == "":
+            urllist.remove(url)
+
     return urllist
 
+#acts as a search engine, returns status code
+def searchInternet(query):
+    querySize = 4
 
+    searches = list(search(query,stop=querySize))[:querySize]
+    urllist = filterURLS(searches)
+
+    folderPath = "/".join([rootDir, query])
+    if not os.path.exists(folderPath):
+        os.mkdir(folderPath)
+
+    #converts url to pdf
+    for url in urllist:
+
+        filePath = "/".join([rootDir, query, getWebsite(url)]) + ".pdf"
+        try:
+            path_wkthmltopdf = r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+            config = pdfkit.configuration(wkhtmltopdf=path_wkthmltopdf)
+            pdfkit.from_url(url, filePath, configuration=config)
+        except:
+            pass
+
+#gets website name
+def getWebsite(url):
+    url = re.findall('(?<=\.)([^.]+)(?:\.(?:co\.uk|ac\.us|[^.]+(?:$|\n)))',url)
+    return ''.join(url).capitalize()
 
 
 def getFileNames():
@@ -67,13 +63,7 @@ def getFileNames():
     for folder in folderList:
         newTopic = topic.Topic()
         pageList = os.listdir(rootDir + "/" + folder)
-        direc = os.path.join(rootDir + "/",folder)
-
-
-
         newTopic.setName(folder)
-
-
 
         for page in pageList:
             newTopic.addPage(folder + "/" + page)
@@ -84,5 +74,5 @@ def getFileNames():
 
     return topicList 
 
-getFileNames()
+# searchInternet("Android vs iOS")
 
