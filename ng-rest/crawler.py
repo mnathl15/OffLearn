@@ -69,34 +69,21 @@ def getFileNames():
     folderList = os.listdir("data")
 
     for folder in folderList:
-
         newTopic = topic.Topic()
         pageList = os.listdir("data/" + folder)
+        direc = os.path.join("data/",folder)
+
+
 
         newTopic.setName(folder)
 
 
 
         for page in pageList:
-
-            newTopic.addPage(os.path.abspath(os.path.join("data/",page)))
-
-
-
-        topicList.append(newTopic)
+            newTopic.addPage(os.path.abspath(os.path.join(direc,page)))
+            topicList.append(newTopic)
 
     return topicList 
 
 getFileNames()
 
-# html = requests.get("https://www.bing.com/search?q= " + text)
-# page = bs(html.content,'html.parser')
-# links = page.find_all('a')
-# valid_links=[]
-# link_number = 0
-# for link in links:
-#     try:
-#         if(requests.get(link['href']).status_code==200):
-#             print(link['href'])
-#     except:
-#         pass
