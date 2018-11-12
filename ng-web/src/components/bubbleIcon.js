@@ -56,14 +56,12 @@ export class BubbleIcon extends Component {
             <Col>
                 <Button style={topic_button} onClick={this.toggle}>{this.props.name.substring(0,1)}</Button>
                 <Fade in={this.state.fadeIn} tag="h5" className="mt-3">
-                    <Row className="text-center">
-                        <Card style={{"max-width": "200px"}}>
-                            <CardHeader>{this.props.name}</CardHeader>
-                            <CardBody>
-                                <CardText>{this.renderPageList()}</CardText>
-                            </CardBody>
-                        </Card>
-                    </Row>
+                    <Card>
+                        <CardHeader>{this.props.name}</CardHeader>
+                        <CardBody>
+                            <CardText>{this.renderPageList()}</CardText>
+                        </CardBody>
+                    </Card>
                 </Fade>
             </Col>
         );

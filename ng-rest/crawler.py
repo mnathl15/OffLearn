@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup as bs
 import requests, os, imp, pdfkit
 from googlesearch import search
-topic = imp.load_source("topic", "./models/topic.py")
+from topic import Topic
 from flask import send_file
 import regex as re
 
@@ -9,24 +9,17 @@ rootDir = "../data"
 
 #makes sure there are no repeat websites
 def filterURLS(urllist):
-    occur_url={}
+
+    filteredList = []
+    filteredUrls = []
     for url in urllist:
         webDomain = getWebsite(url)
 
-        try:
-            occur_url[webDomain]  = occur_url[webDomain] + 1
-        except:
-            occur_url[webDomain] = 0
+        if webDomain not in filteredList and webDomain != "":
+            filteredList.append(webDomain)
+            filteredUrls.append(url)
 
-
-
-        if(occur_url[webDomain] > 1):
-            urllist.remove(url)
-
-        if webDomain == "":
-            urllist.remove(url)
-
-    return urllist
+    return filteredUrls
 
 #acts as a search engine, returns status code
 def searchInternet(query):
@@ -61,7 +54,7 @@ def getFileNames():
     folderList = os.listdir(rootDir)
 
     for folder in folderList:
-        newTopic = topic.Topic()
+        newTopic = Topic()
         pageList = os.listdir(rootDir + "/" + folder)
         newTopic.setName(folder)
 
@@ -73,6 +66,4 @@ def getFileNames():
     
 
     return topicList 
-
-# searchInternet("Android vs iOS")
-
+    
